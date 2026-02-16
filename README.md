@@ -2,41 +2,53 @@
 
 A modern, lightweight local development stack using **FastAPI** for the backend and a **Vanilla HTML/CSS/JS** frontend.
 
-## Project Structure
-
-- `app.py`: FastAPI backend application.
-- `index.html`: Modern dashboard frontend.
-- `requirements.txt`: Python dependencies.
-- `.venv-fastapi/`: Task-isolated virtual environment (recommended).
-
-## Prerequisites
-
 - Python 3.14+
+- PostgreSQL 15+
 - `pip`
 
-## Quick Start
+## Project Structure
 
-### 1. Environment Setup
+- `backend/`: FastAPI application and database logic.
+  - `app/main.py`: Entry point for the FastAPI server.
+  - `app/database/`: Database models, connection, and initialization.
+  - `requirements.txt`: Backend dependencies.
+- `frontend/`: Dashboard frontend files.
+  - `index.html`: Main UI.
+- `scripts/`: Development and testing automation.
+  - `test_e2e.sh`: Script for "clean state" testing with transient Docker DB.
+- `docker-compose.yml`: Local infrastructure definition.
 
-Create and activate a virtual environment, then install dependencies:
+## Database Setup
+
+1. **Configure Environment**: Copy `backend/.env.example` to `backend/.env` and set your `DATABASE_URL`.
+2. **Initialize Database**:
+
+    ```bash
+    cd backend
+    python3 -m app.database.init
+    ```
+
+## Development & Testing
+
+### Clean-State E2E Test
+
+To verify the entire system from scratch (spins up a fresh DB, initializes, tests, and tears down):
 
 ```bash
-python3 -m venv .venv-fastapi
-source .venv-fastapi/bin/activate
-pip install -r requirements.txt
+./scripts/test_e2e.sh
 ```
 
-### 2. Run the Backend
+### Manual Quick Start
 
-Start the FastAPI server (it will run on [http://localhost:5001](http://localhost:5001)):
+1. **Backend**:
 
-```bash
-python3 app.py
-```
+    ```bash
+    cd backend
+    source ../.venv-fastapi/bin/activate
+    python3 -m app.main
+    ```
 
-### 3. Open the Frontend
-
-Simply open `index.html` in your web browser. It will automatically attempt to connect to the backend at `localhost:5001`.
+2. **Frontend**: Open `frontend/index.html` in your browser.
 
 ## API Endpoints
 
