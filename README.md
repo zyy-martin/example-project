@@ -36,6 +36,35 @@ Simply open `index.html` in your web browser. It will automatically attempt to c
 ## API Endpoints
 - `GET /api/status`: Returns the current system status and a greeting message.
 
+## Teardown
+
+### 1. Stop the Server
+Press `Ctrl + C` in the terminal where the backend is running.
+
+### 2. Deactivate Virtual Environment
+```bash
+deactivate
+```
+
+### 3. Cleanup (Optional)
+To delete the virtual environment once you are finished with the task:
+```bash
+rm -rf .venv-fastapi
+```
+
+## Troubleshooting
+
+### Port Already In Use
+If you see an error like `[Errno 48] address already in use` for port 5001, it means another instance of the server is running. You can find and kill the process with:
+
+```bash
+# Find the process ID (PID)
+lsof -i :5001
+
+# Kill the process
+kill -9 <PID>
+```
+
 ## Development Standards
 This project follows the isolation standards defined in the `LOCAL_DEVELOPMENT_GUIDE.md`. Specifically:
 - Use isolated virtual environments for tasks.
