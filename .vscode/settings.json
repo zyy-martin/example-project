@@ -1,0 +1,6 @@
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv-fastapi/bin/python",
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/.venv-fastapi/lib/python3.14/site-packages"
+    ]
+}
